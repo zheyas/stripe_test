@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ item.name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --slate-gray: #6E7683;
+      --light-gray: #B0B3B9;
+      --pale-mint: #E6ECE5;
+      --grass-green: #8AC24A;
+      --moss-green: #649A3A;
+      --red: #b00020;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--pale-mint) 60%, var(--light-gray) 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: var(--slate-gray);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(110,118,131,0.15), 0 1.5px 6px rgba(138,194,74,0.12);
+      max-width: 410px;
+      width: 100%;
+      padding: 2.7rem 2rem 2.2rem 2rem;
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid var(--light-gray);
+    }
+    .item-title {
+      color: var(--moss-green);
+      font-size: 2.2rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 1px;
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.18;
+    }
+    .description {
+      background: var(--light-gray);
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.2rem 1rem 1.4rem 1rem;
+      font-size: 1.11rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2.5px 8.5px rgba(110,118,131,0.09);
+      text-align: center;
+    }
+    .price {
+      margin-top: 0.7rem;
+      font-size: 1.16rem;
+      font-weight: 600;
+      background: var(--pale-mint);
+      border-radius: 8px;
+      padding: 0.75rem 1.2rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+      width: 100%;
+      margin-bottom: 0.16rem;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.3em;
+    }
+    .price .strike {
+      font-size: 1.07rem;
+      color: var(--red);
+      opacity: 0.70;
+      text-decoration: line-through;
+      margin-right: 0.6em;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+    }
+    .price .discount {
+      color: #e04846;
+      font-weight: 700;
+      font-size: 1.24rem;
+      letter-spacing: 1px;
+    }
+    .tax {
+      background: #f2f4f2;
+      color: #5D5F6B;
+      font-size: 1.01rem;
+      margin-bottom: 0.85em;
+      margin-top: 0.4em;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 0.68rem 0.9rem;
+      width: 100%;
+      text-align: center;
+    }
+    .final {
+      background: linear-gradient(103deg,#eaf9bb 50%, #d1e8c5 100%);
+      color: #253817;
+      border-radius: 10px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      box-shadow: 0 2px 12px rgba(138,194,74,0.09);
+      margin-bottom: 1.2rem;
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.2px;
+    }
+    .final .currency {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-left: 2px;
+      opacity: 0.82;
+    }
+    .checkout-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+    #card-element {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px 13px;
+      border: 1.7px solid #cde8bb;
+      background: #f9fbf8;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      transition: border 0.18s, box-shadow 0.2s;
+      margin-bottom: 0.7rem;
+      margin-top: 1.1rem;
+      min-height: 43px;
+    }
+    #card-element:focus {
+      border: 2.3px solid #8AC24A;
+      box-shadow: 0 2px 9px #eaf9bb64;
+    }
+    .buy-button {
+      margin-top: 1.03rem;
+      background: linear-gradient(95deg, var(--grass-green) 55%, var(--moss-green) 100%);
+      border: none;
+      color: #fff;
+      padding: 13px 34px;
+      font-size: 1.14rem;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2.5px 10px rgba(100,154,58,0.13);
+      transition: background 0.19s, transform 0.15s, box-shadow 0.17s;
+      outline: none;
+      letter-spacing: 0.7px;
+    }
+    .buy-button:hover,
+    .buy-button:focus {
+      background: linear-gradient(101deg, var(--moss-green) 90%, var(--grass-green) 10%);
+      transform: translateY(-2px) scale(1.035);
+      box-shadow: 0 5px 18px rgba(100,154,58,0.21);
+    }
+    .buy-button:active {
+      background: linear-gradient(90deg, #8AC24A 95%, #bedd8d 5%);
+      transform: scale(0.97);
+    }
+    #payment-message {
+      margin-top: 1rem;
+      font-weight: 600;
+      min-height: 1.2em;
+      width: 100%;
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      margin-top: 0.5em;
+    }
+    @media (max-width: 500px) {
+      .container {
+        max-width: 99vw;
+        padding: 1.2rem 0.35rem;
+      }
+      .item-title {font-size: 1.3rem;}
+      .final { font-size: 1.12rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item-title">{{ item.name }}</div>
+    <div class="description">{{ item.description }}</div>
+
+    <div class="price">
+      {% if discounted_price %}
+        <span class="strike">{{ item.price }} {{ item.get_currency_display }}</span>
+        <span class="discount">{{ discounted_price }} {{ item.get_currency_display }}</span>
+      {% else %}
+        {{ item.price }} {{ item.get_currency_display }}
+      {% endif %}
+    </div>
+
+    {% if tax_amount and tax_amount > 0 %}
+      <div class="tax">+ Налог: {{ tax_amount }} {{ item.get_currency_display }}</div>
+    {% endif %}
+
+    <div class="final">
+      Итого:&nbsp;{{ final_price }}
+      <span class="currency">
+        {% if item.currency == 'usd' %}💵{% elif item.currency == 'eur' %}💶{% else %}{{ item.get_currency_display }}{% endif %}
+        {{ item.get_currency_display }}
+      </span>
+    </div>
+
+    <form id="payment-form" method="post">
+      {% csrf_token %}
+      <div id="card-element"></div>
+      <div class="checkout-block">
+        <button class="buy-button" type="submit" id="submit-button">Купить</button>
+        <div id="payment-message"></div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const stripePublicKey = "{{ stripe_public_key }}";
+    const clientSecret = "{{ client_secret }}";
+
+    if (clientSecret) {
+      const stripe = Stripe(stripePublicKey);
+      const elements = stripe.elements();
+      const card = elements.create('card');
+      card.mount('#card-element');
+
+      const form = document.getElementById('payment-form');
+      const submitButton = document.getElementById('submit-button');
+      const paymentMessage = document.getElementById('payment-message');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        paymentMessage.textContent = '';
+
+        const {error, paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card
+          }
+        });
+
+        if (error) {
+          paymentMessage.textContent = error.message;
+          paymentMessage.style.color = 'var(--red)';
+          submitButton.disabled = false;
+        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+          paymentMessage.textContent = "Платёж прошёл успешно!";
+          paymentMessage.style.color = 'green';
+          setTimeout(() => {
+            window.location.href = "{% url 'success' %}";
+          }, 1500);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

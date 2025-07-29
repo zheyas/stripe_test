@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Список скидок{% endblock %}
+
+{% block content %}
+  <h1>Список скидок</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Процент</th>
+        <th>Активна</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for discount in discounts %}
+      <tr>
+        <td>{{ discount.name }}</td>
+        <td>{{ discount.percentage }}%</td>
+        <td>{% if discount.is_active %}Да{% else %}Нет{% endif %}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3">Скидки не найдены.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Создать скидку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background-color: #E6ECE5;
+      font-family: 'Segoe UI', sans-serif;
+      color: #6E7683;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(110, 118, 131, 0.15);
+      border: 2px solid #B0B3B9;
+      max-width: 500px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    form p {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .checkboxlist {
+      border: 1px solid #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #f9faf9;
+    }
+    .checkboxlist ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .checkboxlist li {
+      margin: 0.4rem 0;
+      text-align: left;
+    }
+    .checkboxlist label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+      color: #6E7683;
+    }
+    .checkboxlist input[type="checkbox"] {
+      accent-color: #6E7683;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .button {
+      background-color: #6E7683;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
+    .button:hover {
+      background-color: #50555f;
+    }
+    .errorlist {
+      color: red;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Создать скидку</h1>
+    <form method="post">
+      {% csrf_token %}
+
+      <p>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+          <ul class="errorlist">
+            {% for error in form.name.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.percentage.label_tag }}
+        {{ form.percentage }}
+        {% if form.percentage.errors %}
+          <ul class="errorlist">
+            {% for error in form.percentage.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.items.label_tag }}
+        <div class="checkboxlist">
+          <ul>
+            {% for checkbox in form.items %}
+              <li>{{ checkbox.tag }} {{ checkbox.choice_label }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if form.items.errors %}
+          <ul class="errorlist">
+            {% for error in form.items.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <button type="submit" class="button">Сохранить</button>
+    </form>
+  </div>
+</body>
+</html>

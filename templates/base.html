@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Stripe Store{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --slate-gray: #6E7683;
+      --light-gray: #B0B3B9;
+      --pale-mint: #E6ECE5;
+      --grass-green: #8AC24A;
+      --moss-green: #649A3A;
+      --red: #b00020;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--pale-mint) 60%, var(--light-gray) 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: var(--slate-gray);
+      margin: 0;
+      padding: 6rem 1rem 2rem;
+      box-sizing: border-box;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(110,118,131,0.15);
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    nav.navbar {
+      width: 100%;
+      padding: 1em 2em;
+      background: var(--grass-green);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    nav.navbar .logo a {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+    nav.navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.4em;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav.navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(110,118,131,0.15);
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: var(--light-gray);
+      color: white;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--moss-green);
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">🛒 Stripe Store</a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'items-list' %}">Товары</a>
+      <a href="{% url 'orders-list' %}">Заказы</a>
+      <a href="{% url 'tax_list' %}">Налоги</a>
+      <a href="{% url 'discounts-list' %}">Скидки</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказ №{{ order.id }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --slate-gray: #6E7683;
+      --light-gray: #B0B3B9;
+      --pale-mint: #E6ECE5;
+      --grass-green: #8AC24A;
+      --moss-green: #649A3A;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--pale-mint) 60%, var(--light-gray) 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: var(--slate-gray);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(110, 118, 131, 0.15), 0 1.5px 6px rgba(138,194,74,0.12);
+      max-width: 500px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid var(--light-gray);
+    }
+    .order-title {
+      color: var(--moss-green);
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .description {
+      background: var(--light-gray);
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.2rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      box-shadow: 0 2.5px 8.5px rgba(110,118,131,0.09);
+    }
+    .item-line {
+      margin: 0.6rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .item-name {
+      font-weight: 600;
+    }
+    .price-block {
+      text-align: right;
+    }
+    .price-old {
+      text-decoration: line-through;
+      color: #b00020;
+      margin-right: 0.4rem;
+    }
+    .price-new {
+      color: #b00020;
+      font-weight: bold;
+    }
+    .total,
+    .subtotal,
+    .tax {
+      color: var(--slate-gray);
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: var(--pale-mint);
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .subtotal, .tax {
+      margin-top: 0.3rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .buy-button {
+      margin-top: 1.7rem;
+      background: linear-gradient(95deg, var(--grass-green) 55%, var(--moss-green) 100%);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(138,194,74,0.6);
+      transition: background 0.3s ease;
+    }
+    .buy-button:hover {
+      background: linear-gradient(95deg, var(--moss-green) 55%, var(--grass-green) 100%);
+    }
+    form {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="order-title">Заказ №{{ order.id }}</h1>
+
+    <div class="description">
+      <h3>Товары в заказе:</h3>
+      {% for item in items_with_totals %}
+      <div class="item-line">
+        <span class="item-name">{{ item.order_item.item.name }} x {{ item.order_item.quantity }}</span>
+        <span class="price-block">
+          {% if item.discounted_price < item.old_price %}
+            <span class="price-old">{{ item.order_item.item.currency|upper }} {{ item.old_price }}</span>
+            <span class="price-new">{{ item.order_item.item.currency|upper }} {{ item.discounted_price }}</span>
+          {% else %}
+            {{ item.order_item.item.currency|upper }} {{ item.old_price }}
+          {% endif %}
+          &nbsp;x {{ item.order_item.quantity }} = {{ item.order_item.item.currency|upper }} {{ item.line_total }}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="subtotal">Промежуточный итог: {{ subtotal_rub }} ₽</div>
+    <div class="tax">Налог: {{ tax_amount_rub }} ₽</div>
+    <div class="total">Итого к оплате: {{ total_amount_rub }} ₽</div>
+
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="buy-button">Оплатить заказ</button>
+    </form>
+  </div>
+</body>
+</html>
