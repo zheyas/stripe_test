@@ -1,11 +1,12 @@
-from django.http import JsonResponse
+from decimal import ROUND_HALF_UP, Decimal
+
 import stripe
 from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Order
-from decimal import Decimal, ROUND_HALF_UP
 from django.views.generic import ListView
 
+from .models import Order
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

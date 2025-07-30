@@ -1,7 +1,9 @@
-from django.core.management.base import BaseCommand
-from items.models import Item
-from faker import Faker
 import random
+
+from django.core.management.base import BaseCommand
+from faker import Faker
+
+from items.models import Item
 
 
 class Command(BaseCommand):

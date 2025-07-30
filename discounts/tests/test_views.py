@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+
 from discounts.models import Discount
 from items.models import Item
 

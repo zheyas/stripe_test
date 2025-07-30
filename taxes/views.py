@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Tax
+from django.shortcuts import get_object_or_404, redirect, render
+
 from .forms import TaxForm
+from .models import Tax
 
 
 def tax_list(request):

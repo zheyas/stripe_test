@@ -1,6 +1,7 @@
 from django.db import models
-from items.models import Item
+
 from discounts.models import Discount
+from items.models import Item
 from taxes.models import Tax
 
 

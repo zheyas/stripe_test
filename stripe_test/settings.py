@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
-from decouple import config
 
+from decouple import UndefinedValueError, config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'stripe_test.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-"""
+
 try:
     DB_NAME = config('DB_NAME')
     DB_USER = config('DB_USER')
@@ -94,8 +94,8 @@ try:
         }
     }
 except UndefinedValueError:
-    # Если переменных нет или .env не заполнен, используем SQLite:"""
-DATABASES = {
+    # Если переменных нет или .env не заполнен, используем SQLite:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',

@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import ItemDetailView, SuccessView, CancelView
+
 from .views import ItemListView  # 🔹 добавляем список
+from .views import CancelView, ItemDetailView, SuccessView
 
 urlpatterns = [
     path('items/', ItemListView.as_view(), name='items-list'),

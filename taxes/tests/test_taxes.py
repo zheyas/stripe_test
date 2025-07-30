@@ -1,7 +1,8 @@
 import pytest
 from django.urls import reverse
-from taxes.models import Tax
+
 from items.models import Item
+from taxes.models import Tax
 
 
 @pytest.mark.django_db
