@@ -1,6 +1,7 @@
-import requests
 import xml.etree.ElementTree as ET
 from decimal import Decimal
+
+import requests
 
 
 def get_exchange_rate(from_currency: str, to_currency: str) -> Decimal:

@@ -1,6 +1,7 @@
-from items import services
 import pytest
 from django.urls import reverse
+
+from items import services
 from items.models import Item
 
 

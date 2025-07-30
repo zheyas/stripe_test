@@ -1,8 +1,10 @@
 # orders/tests/test_views.py
 from decimal import Decimal
+
 import pytest
 from django.urls import reverse
-from orders.models import Order, OrderItem, Item
+
+from orders.models import Item, Order, OrderItem
 
 
 @pytest.mark.django_db
