@@ -3,6 +3,7 @@ from django.conf import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 def create_payment_intent(item):
     final_price = item.get_final_price()
     amount = int(final_price * 100)

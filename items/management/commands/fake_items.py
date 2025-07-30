@@ -3,6 +3,7 @@ from items.models import Item
 from faker import Faker
 import random
 
+
 class Command(BaseCommand):
     help = 'Создаёт случайные товары с помощью Faker'
 

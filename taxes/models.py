@@ -1,6 +1,6 @@
-#taxes/models.py
 from django.db import models
 from items.models import Item
+
 
 class Tax(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название налога")
@@ -10,8 +10,12 @@ class Tax(models.Model):
         default=0,
         verbose_name="Процент налога"
     )
-    items = models.ManyToManyField(Item, related_name="taxes", verbose_name="Выберите товары")
-    description = models.TextField(blank=True, null=True, verbose_name="Описание налога")
+    items = models.ManyToManyField(
+        Item, related_name="taxes", verbose_name="Выберите товары"
+    )
+    description = models.TextField(
+        blank=True, null=True, verbose_name="Описание налога"
+    )
 
     def __str__(self):
         return f"{self.name} ({self.percentage}%)"

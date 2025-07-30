@@ -4,14 +4,82 @@
   <meta charset="UTF-8" />
   <title>{{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
+    /* --- Navbar стили --- */
+    nav.navbar {
+      background: linear-gradient(90deg, #8AC24A 70%, #649A3A 100%);
+      padding: 1.1rem 1.6rem;
+      width: 100vw;
+      min-width: 320px;
+      margin: 0 0 2.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      box-shadow: 0 2px 10px rgba(34, 139, 34, 0.07);
+      border-radius: 0 0 8px 8px;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      transform: translateX(-50%);
+    }
+    nav.navbar .logo a {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    nav.navbar .nav-links {
+      display: flex;
+    }
+    nav.navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.4em;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.15s;
+    }
+    nav.navbar .nav-links a:hover,
+    nav.navbar .nav-links a:focus {
+      text-decoration: underline;
+      color: #d2ffbb;
+    }
+    /* Для мобильных */
+    @media (max-width: 700px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.7rem 0.5rem;
+      }
+      nav.navbar .nav-links {
+        margin-top: 0.8em;
+        flex-wrap: wrap;
+        gap: 0.9em;
+      }
+      nav.navbar .nav-links a {
+        margin-left: 0;
+        font-size: 0.98rem;
+      }
+    }
+    /* --- Дальше - только формы и body --- */
     body {
       background-color: #E6ECE5;
       font-family: 'Segoe UI', sans-serif;
       color: #6E7683;
-      padding: 2rem;
+      margin: 0;                /* убираем паддинг! */
+      padding: 0;               /* убираем паддинг! */
+    }
+    .centered-container {
       max-width: 400px;
-      margin: auto;
+      padding: 2rem;
+      margin: 0 auto;
     }
     h1 {
       color: #6E7683;
@@ -34,7 +102,7 @@
     input[type="text"],
     input[type="number"],
     textarea {
-      width: 100%;          /* равная ширина для всех полей */
+      width: 100%;
       padding: 0.5rem;
       margin-top: 0.3rem;
       border: 1px solid #B0B3B9;
@@ -42,7 +110,7 @@
       font-size: 1rem;
       color: #6E7683;
       font-family: 'Segoe UI', sans-serif;
-      box-sizing: border-box; /* чтобы паддинги не ломали ширину */
+      box-sizing: border-box;
     }
     button {
       margin-top: 1.5rem;
@@ -85,61 +153,78 @@
   </style>
 </head>
 <body>
-  <h1>{{ title }}</h1>
-  <form method="post">
-    {% csrf_token %}
 
-    <p>
-      {{ form.name.label_tag }}<br />
-      {{ form.name }}
-      {% if form.name.errors %}
+  <!-- nav вне
+контейнера! -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">🛒 Stripe Store</a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'items-list' %}">Товары</a>
+      <a href="{% url 'orders-list' %}">Заказы</a>
+      <a href="{% url 'tax_list' %}">Налоги</a>
+      <a href="{% url 'discounts-list' %}">Скидки</a>
+    </div>
+  </nav>
+
+  <div class="centered-container">
+    <h1>{{ title }}</h1>
+    <form method="post">
+      {% csrf_token %}
+
+      <p>
+        {{ form.name.label_tag }}<br />
+        {{ form.name }}
+        {% if form.name.errors %}
+          <ul style="color:red; margin-top:0.25rem;">
+            {% for err in form.name.errors %}<li>{{ err }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.percentage.label_tag }}<br />
+        {{ form.percentage }}
+        {% if form.percentage.errors %}
+          <ul style="color:red; margin-top:0.25rem;">
+            {% for err in form.percentage.errors %}<li>{{ err }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.description.label_tag }}<br />
+        {{ form.description }}
+        {% if form.description.errors %}
+          <ul style="color:red; margin-top:0.25rem;">
+            {% for err in form.description.errors %}<li>{{ err }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.items.label_tag }}
+        <div class="checkbox-list">
+          {% for checkbox in form.items %}
+            <label>{{ checkbox.tag }} {{ checkbox.choice_label }}</label>
+          {% endfor %}
+        </div>
+        {% if form.items.errors %}
+          <ul style="color:red; margin-top:0.25rem;">
+            {% for err in form.items.errors %}<li>{{ err }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      {% if form.non_field_errors %}
         <ul style="color:red; margin-top:0.25rem;">
-          {% for err in form.name.errors %}<li>{{ err }}</li>{% endfor %}
+          {% for err in form.non_field_errors %}<li>{{ err }}</li>{% endfor %}
         </ul>
       {% endif %}
-    </p>
 
-    <p>
-      {{ form.percentage.label_tag }}<br />
-      {{ form.percentage }}
-      {% if form.percentage.errors %}
-        <ul style="color:red; margin-top:0.25rem;">
-          {% for err in form.percentage.errors %}<li>{{ err }}</li>{% endfor %}
-        </ul>
-      {% endif %}
-    </p>
-
-    <p>
-      {{ form.description.label_tag }}<br />
-      {{ form.description }}
-      {% if form.description.errors %}
-        <ul style="color:red; margin-top:0.25rem;">
-          {% for err in form.description.errors %}<li>{{ err }}</li>{% endfor %}
-        </ul>
-      {% endif %}
-    </p>
-
-    <p>
-      {{ form.items.label_tag }}
-      <div class="checkbox-list">
-        {% for checkbox in form.items %}
-          <label>{{ checkbox.tag }} {{ checkbox.choice_label }}</label>
-        {% endfor %}
-      </div>
-      {% if form.items.errors %}
-        <ul style="color:red; margin-top:0.25rem;">
-          {% for err in form.items.errors %}<li>{{ err }}</li>{% endfor %}
-        </ul>
-      {% endif %}
-    </p>
-
-    {% if form.non_field_errors %}
-      <ul style="color:red; margin-top:0.25rem;">
-        {% for err in form.non_field_errors %}<li>{{ err }}</li>{% endfor %}
-      </ul>
-    {% endif %}
-
-    <button type="submit">Сохранить</button>
-  </form>
+      <button type="submit">Сохранить</button>
+    </form>
+  </div>
 </body>
 </html>

@@ -3,16 +3,22 @@ from items.models import Item
 from discounts.models import Discount
 from taxes.models import Tax
 
+
 class Order(models.Model):
     items = models.ManyToManyField(Item, through='OrderItem')
-    discount = models.ForeignKey(Discount, null=True, blank=True, on_delete=models.SET_NULL)
-    tax = models.ForeignKey(Tax, null=True, blank=True, on_delete=models.SET_NULL)
+    discount = models.ForeignKey(Discount, null=True,
+                                 blank=True,
+                                 on_delete=models.SET_NULL
+                                 )
+    tax = models.ForeignKey(Tax, null=True, blank=True,
+                            on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def total_amount_cents(self):
         total = 0
         for order_item in self.orderitem_set.all():
-            price = order_item.item.get_discounted_price() or order_item.item.price
+            price = order_item.item.get_discounted_price(
+            ) or order_item.item.price
             total += int(price * 100) * order_item.quantity
 
         if self.discount:

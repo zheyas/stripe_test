@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Детали скидки{% endblock %}
+
+{% block content %}
+{% include "partials/navbar.html" %}
+
+<div class="detail-container">
+  <h1>Детали скидки</h1>
+  <table class="detail-table">
+    <tr>
+      <th>Название:</th>
+      <td>{{ discount.name }}</td>
+    </tr>
+    <tr>
+      <th>Размер скидки:</th>
+      <td>{{ discount.percentage }}%</td>
+    </tr>
+    <tr>
+      <th>Применяется к товарам:</th>
+      <td>
+        {% if discount.items.all %}
+          <ul>
+            {% for item in discount.items.all %}
+              <li>{{ item.name }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span>Нет</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% if discount.stripe_coupon_id %}
+    <tr>
+      <th>Stripe Coupon ID:</th>
+      <td>{{ discount.stripe_coupon_id }}</td>
+    </tr>
+    {% endif %}
+  </table>
+  <a href="{% url 'discounts-list' %}" class="back-link">← Назад к списку скидок</a>
+</div>
+
+<style>
+.detail-container {
+  background: #fff;
+  margin: 2.5rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  max-width: 520px;
+  box-shadow: 0 8px 32px rgba(110, 118, 131, 0.15);
+  border: 2px solid #B0B3B9;
+  color: #6E7683;
+}
+.detail-container h1 {
+  margin-bottom: 1.7rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.detail-table th {
+  text-align: left;
+  width: 170px;
+  padding: 0.7em 0.5em 0.7em 0;
+  background: #f6faf7;
+  font-weight: 600;
+  color: #4d535a;
+}
+.detail-table td {
+  padding: 0.7em 0.5em;
+}
+ul {
+  margin: 0.2em 0 0.2em 1.2em;
+  padding: 0;
+}
+.back-link {
+  color: #6E7683;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 1.5em;
+  display: inline-block;
+  transition: color 0.2s;
+}
+.back-link:hover {
+  color: #363943;
+  text-decoration: underline;
+}
+</style>
+{% endblock %}

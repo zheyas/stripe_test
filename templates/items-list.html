@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% block title %}Список товаров{% endblock %}
 
 {% block content %}
   <h1>Список товаров</h1>
@@ -9,19 +8,21 @@
         <th>Название</th>
         <th>Описание</th>
         <th>Цена</th>
-        <th>Валюта</th>
       </tr>
     </thead>
     <tbody>
       {% for item in items %}
       <tr>
-        <td>{{ item.name }}</td>
+        <td>
+          <a href="{% url 'item-detail' item.id %}" style="color: #649A3A; font-weight: bold;">
+            {{ item.name }}
+          </a>
+        </td>
         <td>{{ item.description }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.currency|upper }}</td>
+        <td>{{ item.price }} {{ item.get_currency_display }}</td>
       </tr>
       {% empty %}
-      <tr><td colspan="4">Товары не найдены.</td></tr>
+      <tr><td colspan="3">Нет товаров.</td></tr>
       {% endfor %}
     </tbody>
   </table>

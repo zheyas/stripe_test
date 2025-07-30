@@ -2,25 +2,85 @@
 {% block title %}Список скидок{% endblock %}
 
 {% block content %}
-  <h1>Список скидок</h1>
+
+  <h1 style="display: flex; align-items: center; justify-content: space-between;">
+    Список скидок
+    <!-- Кнопка "Добавить скидку" можно вернуть при необходимости -->
+  </h1>
+
   <table>
     <thead>
       <tr>
         <th>Название</th>
-        <th>Процент</th>
-        <th>Активна</th>
+        <th>Размер скидки</th>
       </tr>
     </thead>
     <tbody>
       {% for discount in discounts %}
-      <tr>
+      <tr class="clickable-row" data-href="{% url 'discount_detail' discount.pk %}">
         <td>{{ discount.name }}</td>
         <td>{{ discount.percentage }}%</td>
-        <td>{% if discount.is_active %}Да{% else %}Нет{% endif %}</td>
       </tr>
       {% empty %}
-      <tr><td colspan="3">Скидки не найдены.</td></tr>
+      <tr><td colspan="2">Скидки не найдены.</td></tr>
       {% endfor %}
     </tbody>
   </table>
+
+  <style>
+    .clickable-row { cursor: pointer; transition: background 0.13s; }
+    .clickable-row:hover { background-color: #e7eaf2 !important; }
+    /* Остальные ваши стили -- без изменений */
+    .add-discount-btn {
+      background: #6E7683;
+      color: white;
+      text-decoration: none;
+      padding: 0.52em 1.2em;
+      border-radius: 7px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      margin-left: 1em;
+    }
+    .add-discount-btn:hover {
+      background: #4c505a;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 720px;
+      margin-top: 1.5rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(110,118,131,0.07);
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.85em 1.1em;
+      text-align: left;
+      border-bottom: 1px solid #eceff2;
+    }
+    th {
+      background: #f6faf7;
+      color: #6E7683;
+      font-weight: 700;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:nth-child(even) td {
+      background: #f7f9f8;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let rows = document.querySelectorAll("tr.clickable-row");
+      rows.forEach(function(row) {
+        row.addEventListener("click", function() {
+          window.location = row.dataset.href;
+        });
+      });
+    });
+  </script>
+
 {% endblock %}
