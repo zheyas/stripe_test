@@ -1,4 +1,3 @@
-#utils/currency.py
 import requests
 import xml.etree.ElementTree as ET
 from decimal import Decimal

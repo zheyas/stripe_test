@@ -1,14 +1,15 @@
-#discounts/forms.py
 from django import forms
 from .models import Discount
-from items.models import Item
+
 
 class DiscountForm(forms.ModelForm):
     class Meta:
         model = Discount
         fields = ['name', 'percentage', 'items']
         widgets = {
-            'items': forms.CheckboxSelectMultiple(attrs={'class': 'styled-checkbox'}),
+            'items': forms.CheckboxSelectMultiple(
+                attrs={'class': 'styled-checkbox'}
+            ),
         }
         labels = {
             'name': 'Название акции',
@@ -20,5 +21,7 @@ class DiscountForm(forms.ModelForm):
         cleaned_data = super().clean()
         items = cleaned_data.get('items')
         if not items:
-            raise forms.ValidationError("Выберите хотя бы один товар для применения скидки.")
+            raise forms.ValidationError(
+                "Выберите хотя бы один товар для применения скидки."
+            )
         return cleaned_data

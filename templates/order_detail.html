@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Заказ №{{ order.id }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     :root {
       --slate-gray: #6E7683;
@@ -18,9 +19,67 @@
       font-family: 'Segoe UI', 'Arial', sans-serif;
       color: var(--slate-gray);
       margin: 0;
+      /* убран flex! */
+    }
+    nav.navbar {
+      background: linear-gradient(90deg, var(--grass-green) 70%, var(--moss-green) 100%);
+      padding: 1.1rem 1.6rem;
+      width: 100vw;
+      min-width: 320px;
+      margin: 0 0 2.5rem 0;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      box-shadow: 0 2px 10px rgba(34, 139, 34, 0.07);
+      border-radius: 0 0 8px 8px;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      transform: translateX(-50%);
+    }
+    nav.navbar .logo a {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    nav.navbar .nav-links {
+      display: flex;
+    }
+    nav.navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.4em;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.15s;
+    }
+    nav.navbar .nav-links a:hover,
+    nav.navbar .nav-links a:focus {
+      text-decoration: underline;
+      color: #d2ffbb;
+    }
+    @media (max-width: 700px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.7rem 0.5rem;
+      }
+      nav.navbar .nav-links {
+        margin-top: 0.8em;
+        flex-wrap: wrap;
+        gap: 0.9em;
+      }
+      nav.navbar .nav-links a {
+        margin-left: 0;
+        font-size: 0.98rem;
+      }
     }
     .container {
       background: white;
@@ -29,7 +88,7 @@
       max-width: 500px;
       width: 100%;
       padding: 2.5rem 2rem;
-      margin: 2rem;
+      margin: 32px auto; /* центрируем! */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -82,7 +141,8 @@
       font-weight: 600;
       background: var(--pale-mint);
       border-radius: 8px;
-      padding: 0.7rem 1rem;
+      padding: 0.7rem
+1rem;
       width: 100%;
       text-align: center;
       letter-spacing: 0.5px;
@@ -115,6 +175,20 @@
   </style>
 </head>
 <body>
+  <!-- Навбар ВНЕ контейнера, прямо в body -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">🛒 Stripe Store</a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'items-list' %}">Товары</a>
+      <a href="{% url 'orders-list' %}">Заказы</a>
+      <a href="{% url 'tax_list' %}">Налоги</a>
+      <a href="{% url 'discounts-list' %}">Скидки</a>
+    </div>
+  </nav>
+
+  <!-- Контент кладём в центрированный container -->
   <div class="container">
     <h1 class="order-title">Заказ №{{ order.id }}</h1>
 
@@ -140,9 +214,8 @@
     <div class="tax">Налог: {{ tax_amount_rub }} ₽</div>
     <div class="total">Итого к оплате: {{ total_amount_rub }} ₽</div>
 
-    <form method="post" action="">
+    <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
       <button type="submit" class="buy-button">Оплатить заказ</button>
     </form>
   </div>

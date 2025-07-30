@@ -9,6 +9,7 @@ from django.views.generic import ListView
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     order_items = order.orderitem_set.select_related('item').all()
@@ -18,7 +19,9 @@ def order_detail(request, order_id):
 
     for oi in order_items:
         discounted_price = oi.item.get_discounted_price()
-        line_total = (discounted_price * oi.quantity).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        line_total = (discounted_price * oi.quantity).quantize(
+            Decimal('0.01'), rounding=ROUND_HALF_UP
+        )
         subtotal += line_total
         items_with_totals.append({
             'order_item': oi,
@@ -29,7 +32,9 @@ def order_detail(request, order_id):
 
     # Пример налога 10% (замени на свою логику)
     tax_percentage = Decimal('10.0')
-    tax_amount = (subtotal * tax_percentage / 100).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    tax_amount = (subtotal * tax_percentage / 100).quantize(
+        Decimal('0.01'), rounding=ROUND_HALF_UP
+    )
     total_amount = subtotal + tax_amount
 
     context = {
@@ -41,6 +46,7 @@ def order_detail(request, order_id):
         'form': None,  # если есть форма, передай сюда
     }
     return render(request, 'order_detail.html', context)
+
 
 def buy_order(request, order_id):
     order = get_object_or_404(Order, pk=order_id)
@@ -83,6 +89,7 @@ def buy_order(request, order_id):
     )
 
     return JsonResponse({'id': session.id})
+
 
 class OrderListView(ListView):
     model = Order

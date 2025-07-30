@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       {% for order in orders %}
-      <tr>
+      <tr class="clickable-row" data-href="{% url 'order_detail' order.id %}">
         <td>{{ order.id }}</td>
         <td>
           {% for item in order.items.all %}
@@ -29,4 +29,14 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <script>
+    // JS для кликабельных строк
+    document.querySelectorAll('.clickable-row').forEach(row => {
+      row.style.cursor = 'pointer';
+      row.addEventListener('click', function() {
+        window.location.href = this.dataset.href;
+      });
+    });
+  </script>
 {% endblock %}

@@ -3,24 +3,24 @@
 
 {% block content %}
   <h1>Список налогов</h1>
-  <a href="{% url 'tax_create' %}" class="button">Добавить налог</a>
+  <!--<a href="{% url 'tax_create' %}" class="button">Добавить налог</a>-->
   <table>
     <thead>
       <tr>
         <th>Название</th>
         <th>Процент</th>
-        <th>Действия</th>
       </tr>
     </thead>
     <tbody>
       {% for tax in taxes %}
       <tr>
         <td>{{ tax.name }}</td>
-        <td>{{ tax.percentage }}%</td>
+        <td>{{ tax.percentage }}%</td>      <!-- Навбар отдельно, ВНЕ .container!
+
         <td>
           <a href="{% url 'tax_edit' tax.pk %}" class="action">Редактировать</a>
           <a href="{% url 'tax_delete' tax.pk %}" class="action">Удалить</a>
-        </td>
+        </td>-->
       </tr>
       {% empty %}
       <tr><td colspan="3">Налоги не найдены.</td></tr>

@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+<nav class="navbar">
+    <div class="logo">
+      <a href="/">🛒 Stripe Store</a>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'items-list' %}">Товары</a>
+      <a href="{% url 'orders-list' %}">Заказы</a>
+      <a href="{% url 'tax_list' %}">Налоги</a>
+      <a href="{% url 'discounts-list' %}">Скидки</a>
+    </div>
+</nav>
+

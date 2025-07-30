@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
-from decouple import config, UndefinedValueError
+from decouple import config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,14 +74,15 @@ WSGI_APPLICATION = 'stripe_test.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+"""
 try:
     DB_NAME = config('DB_NAME')
     DB_USER = config('DB_USER')
     DB_PASSWORD = config('DB_PASSWORD')
     DB_HOST = config('DB_HOST')
     DB_PORT = config('DB_PORT')
-    # Если что-то из этого не определено, выбросится ошибка и перейдём на SQLite
+    # Если что-то из этого не определено,
+    # выбросится ошибка и перейдём на SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -93,8 +94,8 @@ try:
         }
     }
 except UndefinedValueError:
-    # Если переменных нет или .env не заполнен, используем SQLite:
-    DATABASES = {
+    # Если переменных нет или .env не заполнен, используем SQLite:"""
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
@@ -102,22 +103,25 @@ except UndefinedValueError:
     }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.'
+                'password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -138,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

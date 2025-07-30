@@ -1,4 +1,3 @@
-#stripe_test/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from .views import HomeView
@@ -10,5 +9,4 @@ urlpatterns = [
     path('', include('orders.urls')),
     path('', include('discounts.urls')),
     path('', include('taxes.urls')),
-
 ]

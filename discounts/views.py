@@ -1,6 +1,6 @@
 import stripe
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import DiscountForm
 from django.views.generic import ListView
 from .models import Discount
@@ -32,9 +32,17 @@ def create_discount(request):
             form.save_m2m()  # сохраняем связь с товарами
 
             return redirect("admin:discounts_discount_changelist")
-        selected_items = request.POST.getlist('items')  # для случая с невалидной формой
+        selected_items = (request.
+                          POST.getlist('items'))
     else:
         form = DiscountForm()
         selected_items = []
 
-    return render(request, "create_discount.html", {"form": form, "selected_items": selected_items})
+    return render(request, "create_discount.html",
+                  {"form": form, "selected_items": selected_items})
+
+
+def discount_detail(request, pk):
+    discount = get_object_or_404(Discount, pk=pk)
+    return render(request, 'discounts/discount_detail.html',
+                  {'discount': discount})

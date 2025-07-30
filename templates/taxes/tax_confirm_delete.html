@@ -5,16 +5,16 @@
   <title>Удалить налог</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      background-color: #E6ECE5;
-      font-family: 'Segoe UI', sans-serif;
-      color: #6E7683;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+
+body {
+  background-color: #E6ECE5;
+  font-family: 'Segoe UI', sans-serif;
+  color: #6E7683;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
     .container {
       background: white;
       padding: 2.5rem 2rem;
@@ -22,8 +22,9 @@
       box-shadow: 0 8px 32px rgba(110, 118, 131, 0.15);
       border: 2px solid #B0B3B9;
       text-align: center;
-      max-width: 400px;
-    }
+max-width: 400px;
+  margin: 2rem auto;
+      }
     h1 {
       color: #6E7683;
       font-size: 2rem;
@@ -48,6 +49,8 @@
   </style>
 </head>
 <body>
+{% include "partials/navbar.html" %}
+
   <div class="container">
     <h1>Удалить налог?</h1>
     <p>Вы уверены, что хотите удалить налог "{{ tax.name }}"?</p>
