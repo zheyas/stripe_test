@@ -50,3 +50,4 @@ build/
 # MyPy
 .mypy_cache/
 .dmypy.json
+repo.txt
