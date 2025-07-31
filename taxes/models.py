@@ -1,3 +1,4 @@
+
 from django.db import models
 
 from items.models import Item
@@ -26,3 +27,9 @@ class Tax(models.Model):
         if currencies.count() == 1:
             return currencies.first().upper()
         return "несколько валют"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'percentage'],
+                                    name='unique_tax_name_percentage')
+        ]

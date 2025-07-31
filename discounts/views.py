@@ -1,12 +1,9 @@
-import stripe
-from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
 
+from .business import create_stripe_coupon
 from .forms import DiscountForm
 from .models import Discount
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class DiscountListView(ListView):
@@ -21,20 +18,13 @@ def create_discount(request):
         if form.is_valid():
             discount = form.save(commit=False)
 
-            # Создание купона Stripe
-            stripe_coupon = stripe.Coupon.create(
-                name=discount.name,
-                percent_off=float(discount.percentage),
-                duration="once",
-            )
-
-            discount.stripe_coupon_id = stripe_coupon["id"]
+            # Вызов бизнес-логики, а не Stripe напрямую!
+            discount.stripe_coupon_id = create_stripe_coupon(discount)
             discount.save()
             form.save_m2m()  # сохраняем связь с товарами
 
             return redirect("admin:discounts_discount_changelist")
-        selected_items = (request.
-                          POST.getlist('items'))
+        selected_items = request.POST.getlist('items')
     else:
         form = DiscountForm()
         selected_items = []

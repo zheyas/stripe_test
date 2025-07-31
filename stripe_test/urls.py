@@ -6,8 +6,8 @@ from .views import HomeView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    path('', include('items.urls')),
-    path('', include('orders.urls')),
-    path('', include('discounts.urls')),
-    path('', include('taxes.urls')),
+    path('items/', include('items.urls')),
+    path('orders/', include('orders.urls')),
+    path('discounts/', include('discounts.urls')),
+    path('taxes/', include('taxes.urls')),
 ]

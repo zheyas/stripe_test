@@ -7,32 +7,26 @@ from taxes.models import Tax
 
 class Order(models.Model):
     items = models.ManyToManyField(Item, through='OrderItem')
-    discount = models.ForeignKey(Discount, null=True,
-                                 blank=True,
-                                 on_delete=models.SET_NULL
-                                 )
-    tax = models.ForeignKey(Tax, null=True, blank=True,
-                            on_delete=models.SET_NULL)
+    discount = models.ForeignKey(
+        Discount, null=True, blank=True, on_delete=models.SET_NULL
+    )
+    tax = models.ForeignKey(
+        Tax, null=True, blank=True, on_delete=models.SET_NULL
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def total_amount_cents(self):
         total = 0
         for order_item in self.orderitem_set.all():
-            price = order_item.item.get_discounted_price(
-            ) or order_item.item.price
-            total += int(price * 100) * order_item.quantity
-
-        if self.discount:
-            total -= int(total * self.discount.percentage / 100)
-
-        if self.tax:
-            total += int(total * self.tax.rate)
-
+            item = order_item.item
+            discounted = item.get_discounted_price()
+            taxed = discounted + item.get_tax_amount(discounted)
+            total += int(taxed * 100) * order_item.quantity
         return max(total, 0)
 
     @property
     def total_amount(self):
-        return (self.total_amount_cents() / 100)
+        return self.total_amount_cents() / 100
 
     def __str__(self):
         return f"Order #{self.id} ({self.items.count()} items)"
