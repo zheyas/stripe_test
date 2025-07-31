@@ -1,3 +1,4 @@
+
 from decimal import ROUND_HALF_UP, Decimal
 
 from django.db import models
@@ -20,8 +21,11 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    def get_max_discount(self):
+        return self.discounts.order_by('-percentage').first()
+
     def get_discounted_price(self):
-        discount = self.discounts.first()
+        discount = self.get_max_discount()
         if discount:
             return (self.price * (
                     1 - discount.percentage / 100)
