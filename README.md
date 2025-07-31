@@ -34,18 +34,20 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 # Запустите сервер:
+
 ```python manage.py runserver```
+
 Откройте http://127.0.0.1:8000/ в браузере.
 
 # ⚙️ Структура проекта
-
+```
 items/ — приложение с товарами
 orders/ — заказы и управление платежами
 discounts/ — скидки и налоги
 templates/ — HTML-шаблоны (минималистичный UI)
 static/ — статические файлы
 README.md — документация
-
+```
 # 🧪 Тестирование
 
 ```pytest .```
