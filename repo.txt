@@ -1,99 +1,167 @@
-e path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/he.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/el.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/dsb.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/en.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/gl.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/ps.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/de.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/ar.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/fr.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/af.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/hsb.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/bg.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/ca.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/pl.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/hr.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/sq.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/hu.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/ro.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/fa.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/ko.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/sr.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/fi.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/select2/i18n/cs.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/xregexp/xregexp.min.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/xregexp/xregexp.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/xregexp/LICENSE.txt'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/jquery/jquery.min.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/jquery/jquery.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/vendor/jquery/LICENSE.txt'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/admin/DateTimeShortcuts.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-Found another file with the destination path 'admin/js/admin/RelatedObjectLookups.js'. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.
-194 static files copied to '/app/staticfiles'.
-[2025-07-30 18:59:13 +0000] [15] [INFO] Starting gunicorn 23.0.0
-[2025-07-30 18:59:13 +0000] [15] [INFO] Listening at: http://0.0.0.0:8000 (15)
-[2025-07-30 18:59:13 +0000] [15] [INFO] Using worker: sync
-[2025-07-30 18:59:13 +0000] [16] [INFO] Booting worker with pid: 16
-[2025-07-30 18:59:14 +0000] [16] [ERROR] Exception in worker process
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
-    worker.init_process()
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
-    self.load_wsgi()
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
-    self.wsgi = self.app.wsgi()
-                ^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
-    self.callable = self.load()
-                    ^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
-    return self.load_wsgiapp()
-           ^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
-    return util.import_app(self.app_uri)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
-    mod = importlib.import_module(module)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "/app/stripe_test/wsgi.py", line 16, in <module>
-    application = get_wsgi_application()
-                  ^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
-    return WSGIHandler()
-           ^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/wsgi.py", line 118, in __init__
-    self.load_middleware()
-  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 40, in load_middleware
-    middleware = import_string(middleware_path)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/django/utils/module_loading.py", line 30, in import_string
-    return cached_import(module_path, class_name)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/django/utils/module_loading.py", line 15, in cached_import
-    module = import_module(module_path)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1126, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
-ModuleNotFoundError: No module named 'whitenoise'
-[2025-07-30 18:59:14 +0000] [16] [INFO] Worker exiting (pid: 16)
-[2025-07-30 18:59:15 +0000] [15] [ERROR] Worker (pid:16) exited with code 3
-[2025-07-30 18:59:15 +0000] [15] [ERROR] Shutting down: Master
-[2025-07-30 18:59:15 +0000] [15] [ERROR] Reason: Worker failed to boot.
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Создать скидку</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+  background-color: #E6ECE5;
+  font-family: 'Segoe UI', sans-serif;
+  color: #6E7683;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+    .container {
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(110, 118, 131, 0.15);
+      border: 2px solid #B0B3B9;
+      max-width: 500px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    form p {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .checkboxlist {
+      border: 1px solid #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #f9faf9;
+    }
+    .checkboxlist ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .checkboxlist li {
+      margin: 0.4rem 0;
+      text-align: left;
+    }
+    .checkboxlist label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+      color: #6E7683;
+    }
+    .checkboxlist input[type="checkbox"] {
+      accent-color: #6E7683;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .button {
+      background-color: #6E7683;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
+    .button:hover {
+      background-color: #50555f;
+    }
+    .errorlist {
+      color: red;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+{% include "partials/navbar.html" %}
+  <div class="container">
+    <h1>Создать скидку</h1>
+    <form method="post">
+      {% csrf_token %}
+
+      <p>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {% if form.name.errors %}
+          <ul class="errorlist">
+            {% for error in form.name.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.percentage.label_tag }}
+        {{ form.percentage }}
+        {% if form.percentage.errors %}
+          <ul class="errorlist">
+            {% for error in form.percentage.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      <p>
+        {{ form.items.label_tag }}
+        <div class="checkboxlist">
+          <ul>
+            {% for checkbox in form.items %}
+              <li>{{ checkbox.tag }} {{ checkbox.choice_label }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if form.items.errors %}
+          <ul class="errorlist">
+            {% for error in form.items.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+
+      {% if form.non_field_errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <button type="submit" class="button">Сохранить</button>
+    </form>
+  </div>
+</body>
+</html>
