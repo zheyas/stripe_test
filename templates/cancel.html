@@ -1,18 +1,26 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Платёж отменён</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
     body {
       background-color: #E6ECE5;
       font-family: 'Segoe UI', sans-serif;
       color: #6E7683;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .page-center {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: calc(100vh - 80px); /* 80px — если у navbar примерно такая высота */
     }
     .container {
       background: white;
@@ -22,6 +30,7 @@
       border: 2px solid #B0B3B9;
       text-align: center;
       max-width: 400px;
+      margin: 2rem 0;
     }
     h1 {
       color: #6E7683;
@@ -31,11 +40,12 @@
   </style>
 </head>
 <body>
-{% include "partials/navbar.html" %}
-
-  <div class="container">
-    <h1>Платёж был отменён</h1>
-    <p>Вы можете вернуться и попробовать снова.</p>
+  {% include "partials/navbar.html" %}
+  <div class="page-center">
+    <div class="container">
+      <h1>Платёж был отменён</h1>
+      <p>Вы можете вернуться и попробовать снова.</p>
+    </div>
   </div>
 </body>
 </html>
