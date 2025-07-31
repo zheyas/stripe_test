@@ -26,6 +26,7 @@ source venv/bin/activate  # или venv\Scripts\activate на Windows
 ```pip install -r requirements.txt```
 # Создайте .env файл и добавьте ключи Stripe:
 STRIPE_PUBLIC_KEY=pk_test_...
+
 STRIPE_SECRET_KEY=sk_test_...
 # Примените миграции и создайте суперпользователя:
 ```
