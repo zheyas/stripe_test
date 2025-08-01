@@ -1,4 +1,3 @@
-
 version: "3.8"
 
 services:
@@ -16,10 +15,8 @@ services:
   backend:
     build: .
     restart: unless-stopped
-    command: >
-      sh -c "python manage.py migrate &&
-             python manage.py collectstatic --noinput &&
-             gunicorn mailsender.wsgi:application --bind 0.0.0.0:8000"
+    # gunicorn ‒ миграции и collectstatic запускаются вручную до деплоя
+    command: gunicorn mailsender.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - staticfiles_volume:/app/staticfiles
     env_file:
@@ -29,30 +26,6 @@ services:
         condition: service_healthy
     expose:
       - "8000"
-
-  celery:
-    build: .
-    restart: unless-stopped
-    command: celery -A mailsender worker --loglevel=info
-    env_file:
-      - .env
-    depends_on:
-      backend:
-        condition: service_started
-      redis:
-        condition: service_healthy
-
-  celery-beat:
-    build: .
-    restart: unless-stopped
-    command: celery -A mailsender beat --loglevel=info
-    env_file:
-      - .env
-    depends_on:
-      backend:
-        condition: service_started
-      redis:
-        condition: service_healthy
 
   nginx:
     image: nginx:1.25-alpine
